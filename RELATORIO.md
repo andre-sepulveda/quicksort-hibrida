@@ -12,27 +12,21 @@
 
 ## Resultados
 
-| Corte | Tempo mediano (ms) | Diferença vs. quicksort pura |
+| Corte | Tempo mediano (ms) | Diferença vs. corte 1 |
 |---:|---:|---:|
-| 1 | 46.578 | +0.00% |
-| 5 | 48.146 | +3.37% |
-| 10 | 49.544 | +6.37% |
-| 16 | 40.811 | -12.38% |
-| 20 | 41.274 | -11.39% |
-| 32 | 40.585 | -12.87% |
-| 50 | 44.522 | -4.41% |
-| 100 | 64.721 | +38.95% |
-| 200 | 85.197 | +82.91% |
-
-![Gráfico do tempo em função do corte](grafico_corte_quicksort.png)
+| 1 | 27.668 | +0.00% |
+| 5 | 25.588 | -7.52% |
+| 10 | 24.679 | -10.81% |
+| 16 | 24.180 | -12.61% |
+| 20 | 26.100 | -5.67% |
+| 32 | 23.803 | -13.97% |
+| 50 | 25.240 | -8.78% |
+| 100 | 32.043 | +15.81% |
+| 200 | 46.913 | +69.55% |
 
 ## Análise
 
-- **Melhor corte observado:** `32`, com tempo mediano de **40.585 ms**.
+- **Melhor corte observado:** `32`, com tempo mediano de **23.803 ms**.
 - **Ganho em relação à quicksort pura:** 12.87% (medianas: 46.578 ms contra 40.585 ms).
 - **Cortes grandes demais:** o insertion sort tem custo quadrático no tamanho do trecho. Quando o corte fica alto, ele pode ordenar trechos relativamente grandes por inserção, aumentando o trabalho e piorando o tempo. O ponto ideal depende dos dados, da implementação e da máquina.
 - **Corte = 1:** comporta-se como a quicksort pura nesta implementação, pois não chama insertion sort para subvetores de tamanho positivo. Diferenças pequenas de tempo podem ocorrer por ruído de medição.
-
-## Observações
-
-Os tempos são específicos da máquina e da execução. Reexecute o experimento para verificar se a tendência se mantém.

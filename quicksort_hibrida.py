@@ -68,17 +68,35 @@ def main():
     melhor = min(resultados, key=resultados.get)
     ganho = (baseline - resultados[melhor]) / baseline * 100
     print(f"Melhor corte: {melhor}; ganho vs. corte 1: {ganho:.2f}%")
+    
+    plt.figure(figsize=(10, 5.8))
 
-    plt.plot(CORTES, [resultados[c]*1000 for c in CORTES], marker="o")
-    plt.axhline(baseline*1000, linestyle="--", label="Quicksort pura (corte 1)")
+    plt.plot(
+        range(len(CORTES)),
+        [resultados[c] * 1000 for c in CORTES],
+        marker="o"
+    )
+
+    plt.axhline(
+        baseline * 1000,
+        linestyle="--",
+        label="Quicksort pura (corte 1)"
+    )
+
     plt.xlabel("Corte (elementos)")
     plt.ylabel("Tempo mediano (ms)")
     plt.title("Quicksort híbrida: tempo em função do corte")
-    plt.xticks(CORTES)
+
+    plt.xticks(
+        range(len(CORTES)),
+        CORTES,
+        rotation=35,
+        ha="right"
+    )
+
     plt.grid(True, alpha=0.3)
     plt.legend()
     plt.tight_layout()
     plt.savefig("grafico_corte_quicksort.png", dpi=160)
-
 if __name__ == "__main__":
     main()
